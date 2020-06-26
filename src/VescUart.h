@@ -82,7 +82,7 @@ class VescUart
 		 * @brief      Set the rpm of the motor
 		 * @param      rpm  - The desired RPM (actually eRPM = RPM * poles)
 		 */
-		void setRPM(float rpm);
+		void setRPM(float rpm, uint8_t id = 0);
 
 		/**
 		 * @brief      Set the duty of the motor
