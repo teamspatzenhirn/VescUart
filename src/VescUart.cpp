@@ -273,16 +273,26 @@ void VescUart::setBrakeCurrent(float brakeCurrent) {
 	packSendPayload(payload, 5);
 }
 
-void VescUart::setRPM(float rpm, uint8_t id) {
-	int32_t index = 0;
-	uint8_t payload[7];
-	payload[index++] = COMM_FORWARD_CAN;
-	payload[index++] = id;
+void VescUart::setRPM(float rpm) {
+    int32_t index = 0;
+    uint8_t payload[5];
 
-	payload[index++] = COMM_SET_RPM ;
-	buffer_append_int32(payload, (int32_t)(rpm), &index);
+    payload[index++] = COMM_SET_RPM ;
+    buffer_append_int32(payload, (int32_t)(rpm), &index);
 
-	packSendPayload(payload, 7);
+    packSendPayload(payload, 5);
+}
+
+void VescUart::setRPMCAN(float rpm, uint8_t id){
+    int32_t index = 0;
+    uint8_t payload[7];
+    payload[index++] = COMM_FORWARD_CAN;
+    payload[index++] = id;
+
+    payload[index++] = COMM_SET_RPM ;
+    buffer_append_int32(payload, (int32_t)(rpm), &index);
+
+    packSendPayload(payload, 7);
 }
 
 void VescUart::setDuty(float duty) {
